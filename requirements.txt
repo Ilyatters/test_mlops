@@ -1,5 +1,9 @@
 numpy
 pandas
 tensorflow
-dask[dataframe]
-minio
+matplotlib
+scikit-learn
+zipfile36
+gdown
+more-itertools
+mlflow
