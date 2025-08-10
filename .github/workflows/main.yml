@@ -9,4 +9,5 @@ jobs:
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
-          python model.py
+          docker-compose up -d
+          echo "Docker compose отработал"
