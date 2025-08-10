@@ -1,14 +1,4 @@
 import numpy as np
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-
-# 1. Генерация синтетических данных
-x = np.random.rand(1000, 10)  # 1000 примеров, 10 признаков
-y = x * 2
-
-# 2. Создание модели с одним слоем
-model = Sequential([
-    Dense(1, activation='sigmoid', inpuimport numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from tensorflow.keras import utils
@@ -131,19 +121,7 @@ history_bow = model_bow.fit(x_train,
           epochs=25,
           batch_size=256,
           validation_split=0.2,
-          shuffle=True)t_shape=(10,))  # Один полносвязный слой
-])
+          shuffle=True)
 
-# 3. Компиляция модели
-model.compile(
-    optimizer='adam',
-    loss='binary_crossentropy',  # Функция потерь для бинарной классификации
-    metrics=['accuracy']
-)
-
-# 4. Обучение
-model.fit(X, y, epochs=10, batch_size=32, validation_split=0.2)
-
-# 5. Предсказание
-sample = np.random.rand(1, 10)
-print("Прогноз:", model.predict(sample))
+model_bow.save('tesla_model.h5')
+print('Модель сохранена')
