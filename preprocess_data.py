@@ -20,14 +20,14 @@ try:
     minio_client.fget_object(
         bucket_name=bucket_name,
         object_name=object_name,
-        file_path='/Users/ilyatarasevich/Desktop/Project_MLOps/data/train_datagen.csv'
+        file_path='./data/train_datagen.csv'
     )
     print('Файл успешно скачан')
 
 except S3Error as e:
     print(f'Ошибка {e}')
 
-raw_data = '/Users/ilyatarasevich/Desktop/Project_MLOps/data/train_datagen.csv' \
+raw_data = './data/train_datagen.csv' \
 
 
 ddf = dd.read_csv(raw_data)
