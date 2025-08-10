@@ -1,13 +1,47 @@
-name: first_action
-on: [push]
+name: MinIO Docker Compose Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  run:
+  test-minio:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Train model
+      # 1. Checkout кода
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Установка Docker + Docker Compose
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install Docker Compose
         run: |
-          # Your ML workflow goes here
-          pip install -r requirements.txt
-          docker-compose up -d
-          echo "Docker compose отработал"
+          # Установка Docker Compose V2 (совместим с 'docker compose' командой)
+          sudo mkdir -p /usr/local/lib/docker/cli-plugins
+          sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose
+          sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+          docker compose version
+
+      # 3. Запуск MinIO
+      - name: Start MinIO
+        run: docker compose -f docker-compose.yml up -d
+
+
+# name: first_action
+# on: [push]
+# jobs:
+#   run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Train model
+#         run: |
+#           # Your ML workflow goes here
+#           pip install -r requirements.txt
+#           docker-compose up -d
+#           echo "Docker compose отработал"
