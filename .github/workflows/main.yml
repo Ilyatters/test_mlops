@@ -36,6 +36,9 @@ jobs:
         
       - name: Start gen_data
         run: python gen_data.py
+
+      - name: Start preprocess
+        run: python preprocess_data.py
         
 
 
