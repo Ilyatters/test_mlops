@@ -1,4 +1,4 @@
-name: MinIO Docker Compose Test
+name: Data branch test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test-minio:
+  minio_init:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,6 +30,13 @@ jobs:
       # 3. Запуск MinIO
       - name: Start MinIO
         run: docker compose -f docker-compose.yaml up -d
+
+      - name: Setup Requirements
+        run: pip install -r requirements.txt
+        
+      - name: Start gen_data
+        run: python gen_data.py
+        
 
 
 # name: first_action
