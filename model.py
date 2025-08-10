@@ -1,3 +1,8 @@
+import numpy as no
+
+from tensorflow.keras.layers import Dense
+from tensorflow.kears.model import Sequntial
+
 # 1. Генерация синтетических данных
 x = np.random.rand(1000, 10)  # 1000 примеров, 10 признаков
 y = x * 2
